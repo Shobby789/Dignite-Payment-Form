@@ -26,7 +26,7 @@ module.exports.CreateCustomer = async (req, res) => {
       amount,
     });
 
-    const pageUrl = `http://localhost:5173/${customer._id}`;
+    const pageUrl = `https://dignite-payment-form.vercel.app/${customer._id}`;
     customer.pageUrl = pageUrl;
 
     await customer.save();
