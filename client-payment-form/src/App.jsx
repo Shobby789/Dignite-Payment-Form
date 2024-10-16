@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/id" element={<PaymentFormPage />} />
+        <Route path="/" element={<PaymentFormPage />} />
         <Route path="/success" element={<PaymentSuccessPage />} />
       </Routes>
     </>

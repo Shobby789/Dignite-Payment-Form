@@ -13,9 +13,11 @@ module.exports.CreateCustomer = async (req, res) => {
 
     // Step 2: Create a price for the product
     const price = await stripe.prices.create({
-      product: product.id,
+      product: "prod_R2djQZXPGoP97E",
       unit_amount: amount * 100, // Stripe expects amount in cents
       currency: "usd",
+      nickname: description,
+      // statement_descriptor: "Thank you from DIGS - CTS",
     });
 
     const customer = await Customers.create({
@@ -40,6 +42,9 @@ module.exports.CreateCustomer = async (req, res) => {
         },
       ],
       mode: "payment",
+      payment_intent_data: {
+        statement_descriptor: "Thank you DIGS CTS", // Custom descriptor passed here
+      },
       success_url: `http://localhost:5173/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `http://localhost:5173/cancel`,
     });
